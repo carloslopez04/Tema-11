@@ -2,8 +2,8 @@ import os
 from azure.servicebus import ServiceBusClient, ServiceBusMessage, TransportType
 
 # Configuración de Azure Service Bus (usa WebSocket para evitar bloqueos de red)
-CONNECTION_STR = "Endpoint=sb://loped2.servicebus.windows.net/;SharedAccessKeyName=admin;SharedAccessKey=glbdHipkra6QP22ZcHAVeW18Yn0OFRhMK+ASbPZDxMU="
-QUEUE_NAME = "loped2"
+CONNECTION_STR = ""
+QUEUE_NAME = ""
 
 def enviar_mensaje(texto):
     """Envía un mensaje simple al Service Bus."""
@@ -11,7 +11,7 @@ def enviar_mensaje(texto):
         conn_str=CONNECTION_STR,
         transport_type=TransportType.AmqpOverWebsocket  # ✅ USAMOS WEBSOCKETS
     )
-    
+
     with servicebus_client:
         sender = servicebus_client.get_queue_sender(queue_name=QUEUE_NAME)
         with sender:
